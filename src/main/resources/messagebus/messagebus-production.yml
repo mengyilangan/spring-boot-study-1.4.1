@@ -1,0 +1,31 @@
+messagebus:
+  server:
+    uri: http://172.20.188.115:8080
+  consumers:
+    - name: distribution_task_algorithm_result_consumer
+      #topic:distribution_task_algorithm_result
+      cid: 1174972669519466496
+      secret: Mjg5NjY1IiwiaWF0Ij
+      tags: distribution_success
+      concurrentConsumers: 1
+      maxConcurrentConsumers: 10
+      prefetchcount: 1000
+      receiveTimeout: 6000
+    - name: inspector_task_allocate_car_consumer
+      #topic:distribution_task_algorithm_result
+      cid: 1177492232639348736
+      secret: MDE2OTYxIiwiaWF0Ij
+      tags: inspector_task_allocate_car_tag
+      concurrentConsumers: 1
+      maxConcurrentConsumers: 10
+      prefetchcount: 1000
+      receiveTimeout: 6000
+    - name: car_operate_notice_consumer
+      #topic:  car_operate_notice
+      cid: 1178503639581331456
+      secret: MTM4NzQwIiwiaWF0Ij
+      tags: car_close
+      concurrentConsumers: 1
+      maxConcurrentConsumers: 10
+      prefetchcount: 1000
+      receiveTimeout: 6000

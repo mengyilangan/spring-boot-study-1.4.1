@@ -1,0 +1,28 @@
+messagebus:
+  server:
+    uri: http://messagebus-server.testing00.svc
+  consumers:
+    - name: distribution_task_algorithm_result_consumer
+      #topic:distribution_task_algorithm_result
+      cid: 1174973059203862528
+      secret: Mjg5NjY1IiwiaWF0Ij
+      tags: distribution_success
+      concurrentConsumers: 1
+      maxConcurrentConsumers: 2
+      prefetchcount: 1000
+    - name: inspector_task_allocate_car_consumer
+      cid: 1177492553738485760
+      secret: MDk1OTkwIiwiaWF0Ij
+      tags: inspector_task_allocate_car_tag
+      topic: inspector_task_allocate_car
+      concurrentConsumers: 1
+      maxConcurrentConsumers: 2
+      prefetchcount: 1000
+    - name: car_operate_notice_consumer
+      cid: 1178504302814035968
+      secret: MzAzNDk4IiwiaWF0Ij
+      tags: car_close
+      topic: car_operate_notice
+      concurrentConsumers: 1
+      maxConcurrentConsumers: 2
+      prefetchcount: 1000

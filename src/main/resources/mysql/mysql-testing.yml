@@ -1,0 +1,40 @@
+mysql:
+  groups:
+    - name: default
+      selectSlavePolicy: random
+      master:
+        name: master_1
+        url: jdbc:mysql://rdsqv39909q66i6efi0k.mysql.rds.aliyuncs.com/history?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
+        username: work
+        password: RqQb5YFfOH5ojZ16
+        initialSize: 5
+        maxActive: 20
+        minIdle: 1
+        maxWait: 60000
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        validationQuery: SELECT 1
+        testOnBorrow: false
+        testOnReturn: false
+        testWhileIdle: true
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        filters: stat
+      slaves:
+        - name: history_slave_1
+          url: jdbc:mysql://rdsqv39909q66i6efi0k.mysql.rds.aliyuncs.com/history?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
+          username: work
+          password: RqQb5YFfOH5ojZ16
+          initialSize: 5
+          maxActive: 20
+          minIdle: 1
+          maxWait: 60000
+          poolPreparedStatements: true
+          maxPoolPreparedStatementPerConnectionSize: 20
+          validationQuery: SELECT 1
+          testOnBorrow: false
+          testOnReturn: false
+          testWhileIdle: true
+          timeBetweenEvictionRunsMillis: 60000
+          minEvictableIdleTimeMillis: 300000
+          filters: stat

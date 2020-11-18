@@ -1,0 +1,12 @@
+# octo配置
+octo:
+  host: 10.165.126.103:8000
+  key: cf5a6f8bac2e477fbaeb6d784a8b1e84
+  secret: 35997264bb174627abc0d8a86f29feb4
+  expire: 60000
+# 慢日志配置
+slowlog:
+  # 是否开启
+  enabled: true
+  # 执行时间阀值，以ms为单位
+  threshold: 5000

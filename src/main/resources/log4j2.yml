@@ -1,0 +1,45 @@
+Configuration:
+  status: info
+  # 定义全局变量
+  Properties:
+    Property:
+      - name: log.path
+        value: /mnt/logs/study
+  Appenders:
+    # 控制台日志
+    Console:
+      name: console
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "[%X{request_id}] %-d{yyyy-MM-dd HH:mm:ss} - [%p] [%C{1}:%L %M] %m%n"
+      ThresholdFilter:
+        level: debug
+        onMatch: ACCEPT
+        onMismatch: DENY
+    # 文件日志
+    RollingFile:
+      - name: study
+        fileName: "${log.path}/study.log"
+        filePattern: "${log.path}/study_%d{yyyy-MM-dd}.log"
+        PatternLayout:
+          Pattern: "[%X{request_id}] %-d{yyyy-MM-dd HH:mm:ss} - [%T_%t] [%p] [%C{1}:%L %M] %m%n"
+        Policies:
+          TimeBasedTriggeringPolicy:
+            interval: 1
+            modulate: true
+        ThresholdFilter:
+          level: trace
+          onMatch: ACCEPT
+          onMismatch: DENY
+  Loggers:
+    Logger:
+      - name: org.jooq.tools
+        level: debug
+        additivity: "false"
+        AppenderRef:
+          - ref: console
+
+    Root:
+      level: trace
+      AppenderRef:
+        - ref: study

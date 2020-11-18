@@ -1,0 +1,15 @@
+server:
+  port: 8080
+  context-path: /
+# octo配置
+octo:
+  host: 172.16.0.200:8000
+  key: 31b8a1ed02c244c6a6ca63d5692fb240
+  secret: 52e5b63c2cb24ab18b12de96cc26a62b
+  expire: 60000
+# 慢日志配置
+slowlog:
+  # 是否开启
+  enabled: true
+  # 执行时间阀值，以ms为单位
+  threshold: 5000
