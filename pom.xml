@@ -5,7 +5,11 @@
     <groupId>com.renrenche.jqn</groupId>
     <artifactId>study</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <modules>
+        <module>hotload-test</module>
+        <module>jooq-test</module>
+    </modules>
+    <packaging>pom</packaging>
     <name>study</name>
 
     <parent>
@@ -24,6 +28,7 @@
         <rrc-shiro-web.version>1.0.2</rrc-shiro-web.version>
         <rrc-java-common.version>1.0.0</rrc-java-common.version>
         <auth-client.version>1.2.4</auth-client.version>
+        <hotload.version>1.1.0</hotload.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
@@ -45,45 +50,9 @@
     </properties>
 
     <dependencies>
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter-web</artifactId>-->
-        <!--            <exclusions>-->
-        <!--                <exclusion>-->
-        <!--                    <groupId>org.springframework.boot</groupId>-->
-        <!--                    <artifactId>spring-boot-starter-logging</artifactId>-->
-        <!--                </exclusion>-->
-        <!--            </exclusions>-->
-        <!--        </dependency>-->
-        <!--       <dependency>
-                   <groupId>com.renrenche</groupId>
-                   <artifactId>message-bus-client</artifactId>
-                   <version>${rrc.message-bus.version}</version>
-                   <exclusions>
-                       <exclusion>
-                           <groupId>com.renrenche.rest</groupId>
-                           <artifactId>protocol</artifactId>
-                       </exclusion>
-                       <exclusion>
-                           <artifactId>spring-boot-starter-logging</artifactId>
-                           <groupId>org.springframework.boot</groupId>
-                       </exclusion>
-                   </exclusions>
-               </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.renrenche.spring.boot</groupId>
-            <artifactId>storage-jooq-starter</artifactId>
-            <version>${storage.starter.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
@@ -110,16 +79,28 @@
             <artifactId>jackson-dataformat-yaml</artifactId>
             <version>2.8.3</version>
         </dependency>
-        <dependency>
-            <groupId>com.renrenche.rest</groupId>
-            <artifactId>protocol</artifactId>
-            <version>${rest.protocol.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-log4j2</artifactId>
-        </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.renrenche</groupId>
+                <artifactId>spring-boot-starter-config-hotload</artifactId>
+                <version>${hotload.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.renrenche.spring.boot</groupId>
+                <artifactId>storage-jooq-starter</artifactId>
+                <version>${storage.starter.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <finalName>study</finalName>
@@ -128,7 +109,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.renrenche.jqn.study.Application</mainClass>
+                    <mainClass>com.renrenche.jqn.jooq.test.study.Application</mainClass>
                     <executable>true</executable>
                 </configuration>
                 <executions>
