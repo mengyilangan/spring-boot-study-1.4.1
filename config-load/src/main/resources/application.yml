@@ -1,0 +1,10 @@
+spring:
+  main:
+    banner-mode: off
+info:
+  student: 3
+  school: 2
+logging:
+  level:
+    root: trace
+  file: spring-boot.log
