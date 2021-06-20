@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 /**
- * @author jiangqiaonan
+ * @author mylg
  * @date 2021-06-19
  */
 @FeignClient(value = "jplaceholder", url = "https://jsonplaceholder.typicode.com/")

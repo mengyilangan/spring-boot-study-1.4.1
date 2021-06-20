@@ -1,5 +1,5 @@
 /**
- * @author jiangqiaonan
+ * @author mylg
  * @date 2021-06-19
  */
 package com.mylg.study.feign;
