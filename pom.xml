@@ -13,5 +13,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>config-load</module>
+        <module>feign-starter</module>
     </modules>
 </project>
