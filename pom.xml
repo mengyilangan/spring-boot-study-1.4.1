@@ -14,5 +14,6 @@
     <modules>
         <module>config-load</module>
         <module>bean-names</module>
+        <module>feign-starter</module>
     </modules>
 </project>
