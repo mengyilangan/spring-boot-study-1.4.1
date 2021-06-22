@@ -14,5 +14,6 @@
     <modules>
         <module>config-load</module>
         <module>feign-starter</module>
+        <module>tomcat-thread</module>
     </modules>
 </project>
