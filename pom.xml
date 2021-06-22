@@ -15,5 +15,6 @@
         <module>config-load</module>
         <module>feign-starter</module>
         <module>tomcat-thread</module>
+        <module>learn-drools</module>
     </modules>
 </project>
