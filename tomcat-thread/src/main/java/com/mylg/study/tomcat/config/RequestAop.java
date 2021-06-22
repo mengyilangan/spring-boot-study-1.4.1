@@ -24,7 +24,10 @@ public class RequestAop {
 
             @Override
             public void requestInitialized(ServletRequestEvent sre) {
-                MDC.put("request_id", UUID.randomUUID().toString().replace("-", ""));
+                String key = "request_id";
+                if (MDC.get(key) == null) {
+                    MDC.put(key, UUID.randomUUID().toString().replace("-", ""));
+                }
             }
         };
     }

@@ -13,7 +13,7 @@ public class HelloController {
     @GetMapping(path = "/hello")
     public String Hello() {
         String requestId = MDC.get("request_id");
-        System.out.println("time=" + System.currentTimeMillis() + ";request_id=" + requestId);
+        System.out.println("time=" + System.currentTimeMillis() + ";request_id=" + requestId + ";thread_id=" + Thread.currentThread().getId());
         return requestId;
     }
 }
