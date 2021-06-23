@@ -1,0 +1,31 @@
+package com.mylg.study.drools
+
+import com.mylg.study.drools.HelloWorldExample.Message;
+
+global java.util.List list
+
+rule "Hello World"
+    dialect "mvel"
+    when
+        m : Message( status == Message.HELLO, message : message )
+    then
+        System.out.println( message );
+        System.out.println( "hhhahahhaha" );
+        modify ( m ) {
+           setMessage( "Goodbyte cruel world" ),
+           setStatus( Message.GOODBYE )
+        };
+    modify ( m ) {
+                message = "Goodbye cruel world",
+                status = Message.GOODBYE
+      };
+end
+
+rule "Good Bye"
+    dialect "java"
+    when
+        Message( status == Message.GOODBYE, message : message )
+    then
+        System.out.println( "下一个规则" );
+        System.out.println( message );
+end
