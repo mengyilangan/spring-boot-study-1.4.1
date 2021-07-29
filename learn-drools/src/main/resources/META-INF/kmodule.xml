@@ -5,4 +5,8 @@
     <kbase packages="com.mylg.study.drools">
         <ksession name="HelloWorldKS"/>
     </kbase>
+
+    <kbase name="CashFlowKB" packages="com.mylg.study.drools.cashflow.execution">
+        <ksession name="CashFlowKS"/>
+    </kbase>
 </kmodule>

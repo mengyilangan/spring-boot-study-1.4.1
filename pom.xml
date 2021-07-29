@@ -17,5 +17,6 @@
         <module>tomcat-thread</module>
         <module>learn-drools</module>
         <module>kafka</module>
+        <module>spring-machine</module>
     </modules>
 </project>
