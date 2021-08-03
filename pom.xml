@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>config-load</module>
+        <module>bean-names</module>
         <module>feign-starter</module>
         <module>tomcat-thread</module>
         <module>learn-drools</module>
