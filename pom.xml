@@ -19,5 +19,8 @@
         <module>learn-drools</module>
         <module>kafka</module>
         <module>spring-machine</module>
+        <module>spring-mvc-test</module>
+        <module>rrc-feign</module>
+        <module>learn-spring-expression</module>
     </modules>
 </project>

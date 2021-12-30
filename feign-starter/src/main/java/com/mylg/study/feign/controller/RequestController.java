@@ -20,7 +20,8 @@ public class RequestController {
 
     @GetMapping(path = "/greet")
     public String get() {
-        client.hello();
+        String url = "/a?t=1&a=2&city=北京";
+        client.hello(url);
         return "hello";
     }
 
