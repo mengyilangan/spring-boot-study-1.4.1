@@ -1,6 +1,8 @@
 package com.mylg.learn.spring.expression;
 
 import com.mylg.learn.spring.expression.bean.Inventor;
+import com.mylg.learn.spring.expression.bean.PlaceOfBirth;
+import com.mylg.learn.spring.expression.bean.Society;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.expression.EvaluationContext;
@@ -11,9 +13,8 @@ import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.SimpleEvaluationContext;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author mylg
@@ -80,6 +81,57 @@ class ClassDemoTest {
         SpelExpressionParser parser = new SpelExpressionParser();
         String result = parser.parseExpression(str).getValue(context, String.class);
         System.out.println(result);
+    }
+
+    @Test
+    void parseYear() {
+        int year = 1836;
+        String city = "北京";
+        GregorianCalendar c = new GregorianCalendar();
+        c.set(year, Calendar.AUGUST, 9);
+        Inventor tesla = new Inventor("Nikola Tesla", c.getTime(), "Serbian");
+        PlaceOfBirth birth = new PlaceOfBirth("北京");
+        tesla.setPlaceOfBirth(birth);
+        SpelExpressionParser parser = new SpelExpressionParser();
+        EvaluationContext context = SimpleEvaluationContext
+            .forReadOnlyDataBinding()
+            .withRootObject(tesla)
+            .build();
+        int yearResult = parser.parseExpression("birthdate.year + 1900").getValue(context, Integer.class);
+        Assertions.assertEquals(year, yearResult);
+        String cityResult = (String) parser.parseExpression("placeOfBirth.city").getValue(context);
+        Assertions.assertEquals(city, cityResult);
+    }
+
+    @Test
+    void parseOffice() {
+        EvaluationContext societyContext = SimpleEvaluationContext
+            .forReadOnlyDataBinding()
+            .withRootObject(new Society())
+            .build();
+        SpelExpressionParser parser = new SpelExpressionParser();
+        Inventor pupin = parser.parseExpression("officers['president']").getValue(
+            societyContext, Inventor.class);
+        System.out.println(pupin);
+    }
+
+    @Test
+    void testAssign() {
+        ExpressionParser parser = new SpelExpressionParser();
+        EvaluationContext context = SimpleEvaluationContext.forReadOnlyDataBinding().build();
+        int year = 1836;
+        String city = "北京";
+        GregorianCalendar c = new GregorianCalendar();
+        c.set(year, Calendar.AUGUST, 9);
+        Inventor tesla = new Inventor("Nikola Tesla", c.getTime(), "Serbian");
+        PlaceOfBirth birth = new PlaceOfBirth("北京");
+        tesla.setPlaceOfBirth(birth);
+        String invention = parser.parseExpression("inventions[3]").getValue(
+            context, tesla, String.class);
+//        String name = parser.parseExpression("members[0].name").getValue(
+//            context, ieee, String.class);
+//        String invention = parser.parseExpression("members[0].inventions[6]").getValue(
+//            context, ieee, String.class);
     }
 
 }

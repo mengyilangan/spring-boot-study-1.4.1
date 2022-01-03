@@ -1,5 +1,6 @@
 package com.mylg.learn.spring.expression;
 
+import com.mylg.learn.spring.expression.bean.Simple;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.expression.EvaluationContext;
@@ -9,11 +10,9 @@ import org.springframework.expression.spel.SpelParserConfiguration;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.SimpleEvaluationContext;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions-properties-arrays
+ *
  * @author mylg
  * @date 2021-12-31
  */
@@ -22,7 +21,6 @@ class EvaluationContextTest {
     void testContext() {
         Simple simple = new Simple();
         simple.booleanList.add(true);
-
         EvaluationContext context = SimpleEvaluationContext.forReadOnlyDataBinding().build();
         ExpressionParser parser = new SpelExpressionParser();
         parser.parseExpression("booleanList[0]").setValue(context, simple, "false");
@@ -51,13 +49,10 @@ class EvaluationContextTest {
         Assertions.assertEquals(o.toString(), "list=true");
     }
 
-    public void testMap(){
+    public void testMap() {
 
     }
 
 
 }
 
-class Simple {
-    public List<Boolean> booleanList = new ArrayList<Boolean>();
-}
